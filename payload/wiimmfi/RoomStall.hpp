@@ -8,7 +8,7 @@ namespace RoomStall {
     ///////////////
 
     // The timer before stalled users are kicked, in frames
-    const int KICK_THRESHOLD_TIME = 90 * 60;
+    static const int KICK_THRESHOLD_TIME = 90 * 60;
 
     ///////////////
     // Functions //

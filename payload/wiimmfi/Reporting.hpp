@@ -10,8 +10,8 @@ namespace Reporting {
     ///////////////
 
     // Constants for formatting SHA1 hashes
-    const int HASH_STRING_SIZE = sizeof("1234567812345678123456781234567812345678");
-    const char HASH_STRING_FMT[] = "%08x%08x%08x%08x%08x";
+    static const int HASH_STRING_SIZE = sizeof("1234567812345678123456781234567812345678");
+    static const char HASH_STRING_FMT[] = "%08x%08x%08x%08x%08x";
 
     ///////////////
     // Functions //

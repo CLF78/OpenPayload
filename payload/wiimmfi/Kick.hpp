@@ -18,8 +18,8 @@ namespace Kick {
     };
 
     // The server message for kicking and pid to kick
-    const char KICK_MSG[] = "\\wiimmfi\\kick";
-    const char KICK_MSG_PARAM_PID[] = "\\kickpid\\";
+    static const char KICK_MSG[] = "\\wiimmfi\\kick";
+    static const char KICK_MSG_PARAM_PID[] = "\\kickpid\\";
 
     ///////////////
     // Functions //

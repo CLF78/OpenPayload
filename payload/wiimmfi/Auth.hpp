@@ -13,24 +13,24 @@ namespace Auth {
 
     // The payload version we pretend to be on
     // This is the latest version
-    const char PAYLOAD_VERSION[] = "96";
+    static const char PAYLOAD_VERSION[] = "96";
 
     // The patcher we pretend to be using
     // This is the pre-encoded version of "LE-CODE GCT v1" (plus asterisks)
-    const char PATCHER_TYPE[] = "TEUtQ09ERSBHQ1QgdjEgACoqKioqKioqKioqKioqKioqKioqKioqKioq";
+    static const char PATCHER_TYPE[] = "TEUtQ09ERSBHQ1QgdjEgACoqKioqKioqKioqKioqKioqKioqKioqKioq";
 
     // The IOS version we pretend to be using, as Wiimmfi doesn't need this information
     // This is the pre-encoded Dolphin default for the PAL game
-    const char IOS_VERSION[] = "MzY*";
+    static const char IOS_VERSION[] = "MzY*";
 
     // The console type and region we pretend to be on, as Wiimmfi doesn't need this information
     // This is the pre-computed string for regular Wii on the PAL version
-    const char CONSOLE_TYPE[] = "ffff-P";
+    static const char CONSOLE_TYPE[] = "ffff-P";
 
     // The heading of each response type
-    const char RESPONSE_P2PPORT[] = "p2pport=";
-    const char RESPONSE_CONSOLE_ASSIGN[] = "msg=";
-    const char RESPONSE_TOKEN[] = "xy=";
+    static const char RESPONSE_P2PPORT[] = "p2pport=";
+    static const char RESPONSE_CONSOLE_ASSIGN[] = "msg=";
+    static const char RESPONSE_TOKEN[] = "xy=";
 
     ///////////////
     // Functions //
