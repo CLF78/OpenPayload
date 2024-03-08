@@ -1,0 +1,237 @@
+#include <common/Common.hpp>
+#include <egg/core/eggHeap.hpp>
+#include <nw4r/lyt/drawInfo.hpp>
+#include <game/ui/Page.hpp>
+
+class Section {
+public:
+
+    enum SectionID {
+        NONE = -1,
+
+        // System
+        CONSOLE_SHUTDOWN,
+        UNK_1,
+        LAUNCH_CHANNEL,
+        GOTO_WII_REGION_SELECT,
+        GOTO_WII_MENU,
+        SOFT_RESET,
+        DEBUG_6,
+        DEBUG_7,
+        DEBUG_8,
+        DEBUG_9,
+        DEBUG_A,
+        DEBUG_B,
+        DEBUG_C,
+        DEBUG_D,
+        DEBUG_E,
+        DEBUG_F,
+
+        // Game
+        SAVE_NOT_FOUND,
+        SAVE_INVALID,
+        SAVE_STALE_COUNTRY_ID,
+        SAVE_CANNOT_FLUSH,
+        SAVE_CANNOT_READ_SYSMEM,
+        SAVE_CANNOT_READ_RFL,
+        ERSB_NOTICE,
+        RECOMMEND_60HZ_17,
+        RECOMMEND_60HZ_18,
+        DEMO_GP,
+        DEMO_VS,
+        DEMO_BT,
+        DEMO_MR,
+        DEMO_COMPETITION,
+        RACE_GP,
+        RACE_TT,
+        RACE_VS_1P,
+        RACE_VS_2P,
+        RACE_VS_3P,
+        RACE_VS_4P,
+        RACE_VS_1P_TEAM,
+        RACE_VS_2P_TEAM,
+        RACE_VS_3P_TEAM,
+        RACE_VS_4P_TEAM,
+        RACE_BT_1P,
+        RACE_BT_2P,
+        RACE_BT_3P,
+        RACE_BT_4P,
+        RACE_MR,
+        RACE_COMPETITION,
+        REPLAY_GP,
+        REPLAY_TT,
+        GHOST_RACE_TT_30,
+        GHOST_RACE_TT_31,
+        GHOST_REPLAY_FROM_CHANNEL,
+        GHOST_REPLAY_FROM_DL,
+        GHOST_REPLAY_FROM_TT,
+        AWARD_GP,
+        AWARD_VS_36,
+        AWARD_VS_37,
+        AWARD_BT,
+        CREDITS_A,
+        CREDITS_A_ALL,
+        CREDITS_B,
+        CREDITS_B_ALL,
+        CONGRATULATIONS_SCREEN,
+        CONGRATULATIONS_SCREEN_ALL,
+        MENU_FROM_DEMO,
+        MENU_FROM_CREDIT = MENU_FROM_DEMO,
+        MENU_FROM_BOOT = MENU_FROM_DEMO,
+        MENU_FROM_RESET,
+        MENU_FROM_GAME,
+        MENU_FROM_NEW_LICENSE,
+        MENU_FROM_OPTIONS,
+        MENU_DEMO_GAMEPLAY,
+        MII_SELECT_45,
+        MII_SELECT_46,
+        LICENSE_SETTINGS,
+        MENUSINGLE_FROM_MAIN,
+        MENUSINGLE_FROM_TT_CHANGE_CHAR,
+        MENUSINGLE_FROM_TT_CHANGE_COURSE,
+        MENUSINGLE_FROM_VS,
+        MENUSINGLE_FROM_BT,
+        MENUSINGLE_FROM_MR,
+        MENUSINGLE_FROM_CHANNEL_CHALLENGE_GHOST,
+        MENUSINGLE_FROM_LEADERBOARD_CHALLENGE_GHOST,
+        MENUSINGLE_FROM_GHOSTLIST_CHALLENGE_GHOST,
+        SEND_GHOST_TO_FRIEND_FROM_CHANNEL,
+        CHALLENGE_GHOST_FROM_CHANNEL,
+        WATCH_REPLAY_FROM_CHANNEL,
+        LOCAL_MULTIPLAYER,
+        WIFI_MENU_1P,
+        WIFI_MENU_1P_FROM_DC,
+        WIFI_MENU_1P_FROM_FROOM = WIFI_MENU_1P_FROM_DC,
+        WIFI_MENU_1P_FROM_FRIENDLIST,
+        WIFI_VS_1P_VOTE,
+        WIFI_VS_1P_BT_VOTE,
+        WIFI_VS_2P_SELECT_MII,
+        WIFI_MENU_2P,
+        WIFI_MENU_2P_FROM_DC,
+        WIFI_MENU_2P_FROM_FROOM = WIFI_MENU_2P_FROM_DC,
+        WIFI_MENU_2P_FROM_FRIENDLIST,
+        WIFI_VS_2P_VOTE,
+        WIFI_BT_2P_VOTE,
+        WIFI_FROOM_1P_VS_VOTE,
+        WIFI_FROOM_1P_TEAM_VS_VOTE,
+        WIFI_FROOM_1P_BALLOON_BATTLE_VOTE,
+        WIFI_FROOM_1P_COIN_RUNNERS_VOTE,
+        WIFI_FROOM_2P_VS_VOTE,
+        WIFI_FROOM_2P_TEAM_VS_VOTE,
+        WIFI_FROOM_2P_BALLOON_BATTLE_VOTE,
+        WIFI_FROOM_2P_COIN_RUNNERS_VOTE,
+        RACE_WIFI_VS_1P,
+        RACE_WIFI_VS_2P,
+        RACE_WIFI_VS_LIVE_VIEW_1P,
+        RACE_WIFI_VS_LIVE_VIEW_2P,
+        RACE_WIFI_BT_1P,
+        RACE_WIFI_BT_2P,
+        RACE_WIFI_BT_LIVE_VIEW_1P,
+        RACE_WIFI_BT_LIVE_VIEW_2P,
+        RACE_FROOM_VS_1P,
+        RACE_FROOM_TEAM_VS_1P,
+        RACE_FROOM_BALLOON_BATTLE_1P,
+        RACE_FROOM_COIN_BATTLE_1P,
+        RACE_FROOM_VS_2P,
+        RACE_FROOM_TEAM_VS_2P,
+        RACE_FROOM_BALLOON_BATTLE_2P,
+        RACE_FROOM_COIN_BATTLE_2P,
+        DC_WITH_ERROR_CODE,
+        DC_WITHOUT_ERROR_CODE,
+        CHANNEL_FROM_MAIN_MENU,
+        CHANNEL_FROM_TT_CHECK_RANKING,
+        CHANNEL_FROM_DOWNLOADED_GHOSTS,
+        CHANNEL_LEADERBOARD,
+        CHANNEL_COMPETITION_LEADERBOARD,
+        GHOST_RACE_DATA_READY,
+        GHOST_RACE_DATA_NOT_READY,
+        GHOST_RACE_NEXT_RACE,
+        DONWLOADED_GHOST_LIST,
+        FRIENDLIST_FROM_CHANNEL_83,
+        FRIENDLIST_FROM_CHANNEL_84,
+        COMPETITION_FROM_CHANNEL,
+        COMPETITION_FROM_CHANGE_CHARACTER,
+        COMPETITION_SUBMIT_RECORD,
+        COMPETITION_WII_WHEEL_ONLY,
+        COMPETITION_WII_WHEEL_ONLY_BOSS,
+        INVITE_FRIEND_FROM_MSG_BOARD,
+        DOWNLOAD_LATEST_DATA,
+        OPTIONS,
+        INSTALL_CHANNEL,
+        CHOOSE_REGION,
+        JOIN_MSG_SERVICE,
+        UNLOCK_ORANGE_90,
+        UNLOCK_ORANGE_91,
+        UNLOCK_BLUE,
+        UNLOCK_YELLOW,
+        MISSION_MODE_MENU,
+
+        // Channel
+        WII_CHANNEL_NO_GAME_DISC,
+        WII_CHANNEL_CANNOT_READ_SYSMEM,
+        WII_CHANNEL_CANNOT_READ_RFL,
+        UNK_98,
+        WII_CHANNEL_ESRB_NOTICE,
+        WII_CHANNEL_SELECT_LICENSE_9A,
+        WII_CHANNEL_SELECT_LICENSE_9B,
+        WII_CHANNEL_SELECT_LICENSE_9C,
+        WII_CHANNEL_SELECT_LICENSE_FROM_OPTIONS,
+        WII_CHANNEL_MKCHANNEL_FROM_LICENSE_SELECT,
+        WII_CHANNEL_MKCHANNEL_FROM_TT_CHECK_RANKINGS,
+        WII_CHANNEL_MKCHANNEL_FROM_DOWNLOADED_GHOSTS,
+        WII_CHANNEL_LEADERBOARDS,
+        WII_CHANNEL_TOURNAMENT_LEADERBOARDS,
+        UNK_A3,
+        WII_CHANNEL_DOWNLOADED_GHOSTS,
+        WII_CHANNEL_FRIEND_LIST,
+        WII_CHANNEL_COMPETITION,
+        UNK_A7,
+        WII_CHANNEL_RECEIVED_INVITATION,
+        WII_CHANNEL_DOWNLOAD_LATEST_DATA,
+        WII_CHANNEL_OPTIONS,
+        WII_CHANNEL_REGION_SELECT,
+        WII_CHANNEL_JOIN_MSG_SERVICE,
+
+        // Unknown
+        UNK_AD,
+        UNK_AE,
+        UNK_AF,
+        UNK_B0,
+        UNK_B1,
+        UNK_B2,
+
+        SECTION_COUNT,
+    };
+
+    void loadTHPManager();
+    void shutdownNet();
+
+    static u32 getSoundID(u32 sectionId);
+
+    u32 sectionID;
+    u32 openingAnimIdx;
+
+    Page* pages[Page::PAGE_COUNT];
+    Page* activePages[10];
+    u32 activePageCount;
+    Page* controllerDisconnectedPage;
+    Page* cursor;
+
+    bool hideCursor;
+    bool pauseGame;
+    bool controllerDcPause;
+    bool isPaused;
+    u8 _38C, _38D, _38E, _38F;
+
+    nw4r::lyt::DrawInfo drawInfo;
+    EGG::Heap* layoutHeap;
+    void* resourceAccessor;
+
+    void* _3EC;
+    float _3F0, _3F4, _3F8;
+    u32 _3FC;
+
+    void* videoPlayer;
+    void* friendList;
+};
+size_assert(Section, 0x408);

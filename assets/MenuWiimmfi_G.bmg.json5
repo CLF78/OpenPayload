@@ -1,0 +1,221 @@
+{
+    "2011": {
+        string: "Einzelspieler",
+    },
+    "2013": {
+        string: "Wiimmfi",
+    },
+    "2024": {
+        string: "Spiele via Wiimmfi!",
+    },
+    "2025": {
+        string: "Spielt zu zweit mit anderen via Wiimmfi!",
+    },
+    "2033": {
+        string: "Wiimmfi (1S)",
+    },
+    "2034": {
+        string: "Wiimmfi (2S)",
+    },
+    "2052": {
+        string: "A fatal network error has occurred\nand the game cannot continue.\nPlease report the code below\nto the distribution creator.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "2070": {
+        string: "Keine Verbindung zu Wiimmfi\nmöglich. Es existiert\nkeine Speicherdatei.\nIm Datenverwaltungsbildschirm\ndes Speichers der Wii-Konsole\nkannst du den Inhalt des\nSpeichers der Wii-Konsole verwalten.",
+    },
+    "2072": {
+        string: "Die Verbindung zu Wiimmfi wurde\nunterbrochen. Du kehrst nun\nzurück zum Hauptmenü.",
+    },
+    "2113": {
+        string: "{current player|} und {arg player|0}\nwerden gemeinsam mit\nWiimmfi verbunden.",
+    },
+    "4008": {
+        string: "Es sind keine Freunde in deiner\nFreundesliste registriert.\n\nRegistriere Freunde, um mit ihnen\nzusammen via Wiimmfi zu spielen.",
+    },
+    "4010": {
+        string: "Verbinde mit Wiimmfi...",
+    },
+    "4011": {
+        string: "Soll die Verbindung\nzu Wiimmfi\nwirklich beendet werden?",
+    },
+    "4016": {
+        string: "Du kannst keine Verbindung zu\nWiimmfi herstellen, wenn du\ndiesen Mii-Namen verwendest.\nBitte ändere deinen Mii-Namen\nund versuche es noch einmal.",
+    },
+    "4600": {
+        string: "Fehler bei der Datenübertragung.\nDu kehrst nun zurück zum Hauptmenü.\n\n{color|yor 6}Fehlercode: {arg integer|0 5}",
+    },
+    "4601": {
+        string: "Unable to connect to the Internet.\nCheck the Internet settings of\nthe Wii console.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4602": {
+        string: "Unable to connect to Wiimmfi\ndue to incorrect game patches.\nPlease report the code below\nto the distribution creator.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4603": {
+        string: "Unable to connect to Wiimmfi.\nFor more details:\n{color|player 2}https://wiimmfi.de/err/{arg integer|0 5}\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4604": {
+        string: "Console activation pending.\nPlease wait {arg integer|1 0} hours.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4605": {
+        string: "Console activation pending.\nPlease wait 1 hour.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4606": {
+        string: "Console activation pending.\nPlease wait {arg integer|1 0} days.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4607": {
+        string: "Der Speicher der Wii-Konsole\nist belegt.\n\n{color|yor 6}Fehlercode: {arg integer|0 5}",
+    },
+    "4608": {
+        string: "Der Speicher der Wii-Konsole\nist beschädigt. Bitte lies die\nWii-Bedienungsanleitung, um weitere\nInformationen zu erhalten.\n\n{color|yor 6}Fehlercode: {arg integer|0 5}",
+    },
+    "4609": {
+        string: "Console activation pending.\nPlease wait 1 day.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4610": {
+        string: "Console registered successfully.\nPlease wait 7 days for activation.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4611": {
+        string: "Wiimmfi is undergoing maintenance.\nPlease try again later.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4612": {
+        string: "Wiimmfi is experiencing high traffic\nvolumes. Please try again later.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4613": {
+        string: "Profile creation is currently disabled.\nConnect with an existing profile\nor try again later.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4614": {
+        string: "Unable to connect to Wiimmfi\ndue to outdated patches.\nPlease report the code below\nto the distribution creator.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4615": {
+        string: "This profile is banned and\ncannot be used on Wiimmfi.\nPlease create a new profile.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4616": {
+        string: "Profile creation denied.\nConnect with an existing profile\nor try again in 24 hours.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4617": {
+        string: "Console creation denied.\nConnect with an existing console\nor try again in 24 hours.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4618": {
+        string: "This console is banned\nand cannot be used on Wiimmfi.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4619": {
+        string: "Wiimmfi access denied.\nImport your console NAND\nto connect to Wiimmfi.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4620": {
+        string: "Wiimmfi access denied.\nDisable proxies and/or VPNs\nto connect to Wiimmfi.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4621": {
+        string: "You are banned from Wiimmfi.\nFor more information, check\n{color|player 2}https://wiimmfi.de/show-bans\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4622": {
+        string: "Invalid profile.\nPlease create a new profile\nor use a different one.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4623": {
+        string: "Wiimmfi access denied.\nChange your Mii name\nor use a different Mii.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4624": {
+        string: "An error occurred while a\ndownload was in progress.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4625": {
+        string: "An error occurred.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4626": {
+        string: "An error occurred during\nthe Mii name check.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4627": {
+        string: "Unable to connect to the Internet.\nConfigure an Internet connection first.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4628": {
+        string: "Unable to connect to the Internet.\nEnsure the LAN adapter\nis connected properly.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4629": {
+        string: "Unable to connect to the Internet.\nEnsure the access point\nis properly configured.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4630": {
+        string: "Unable to connect to the Internet.\nCheck your IP address settings.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4631": {
+        string: "Unable to connect to the Internet.\nCheck your DNS settings.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4632": {
+        string: "Unable to connect to the Internet.\nCheck your proxy settings.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4633": {
+        string: "Unable to connect to the Internet.\nEnsure the connection is stable.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4634": {
+        string: "A communication error occurred\nduring the login process.\nFor more information, visit\n{color|player 2}https://wiimmfi.de/err/{arg integer|0 5}.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4635": {
+        string: "A communication error occurred\nduring friend roster synchronization.\nFor more information, visit\n{color|player 2}https://wiimmfi.de/err/{arg integer|0 5}.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4636": {
+        string: "A communication error occurred\nduring matchmaking.\nFor more information, visit\n{color|player 2}https://wiimmfi.de/err/{arg integer|0 5}.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4637": {
+        string: "A communication error occurred.\nFor more information, visit\n{color|player 2}https://wiimmfi.de/err/{arg integer|0 5}.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4638": {
+        string: "You were disconnected due to\na network error or a kick/ban.\n\nCheck here if you are not sure:\n{color|player 2}https://wiimmfi.de/show-bans\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4639": {
+        string: "An error occurred while accessing\nthe Wii System Memory.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "4640": {
+        string: "Unable to connect to other players\ndue to a low quality connection.\n\n{color|yor 6}Error Code: {arg integer|0 5}",
+    },
+    "5300": {
+        string: "Verbunden mit Wiimmfi!",
+    },
+    "5301": {
+        string: "Nicht mit Wiimmfi verbunden!",
+    },
+    "6120": {
+        string: "Mit Wiimmfi verbinden?",
+    },
+    "6122": {
+        string: "Mit Wiimmfi verbinden?",
+    },
+    "6716": {
+        string: "Du hast keinen Freundescode.\nDer Freundescode besteht aus\n12 Ziffern und wird dir automatisch\nzugeteilt, wenn du zum ersten Mal eine\nVerbindung zu Wiimmfi herstellst.\nLies bitte die Wii-Bedienungsanleitung,\num weitere Informationen zu erhalten.\n",
+    },
+    "7001": {
+        string: "Wiimmfi",
+    },
+    "7251": {
+        string: "Mario Kart Wii kann deine Landes-\nflagge und Region an folgenden\nStellen anzeigen:\n- Globus-Position (Wiimmfi)\n- Geistdaten\nDu kannst entscheiden, ob diese\nInformationen für andere Spieler,\ndie via Wiimmfi verbunden sind,\neinsehbar sind.",
+    },
+    "7252": {
+        string: "Möchtest du, dass deine Landes-\nflagge und deine Region erkennbar\nsind, wenn du mit Wiimmfi\nverbunden bist?",
+    },
+    "7255": {
+        string: "Deine Landesflagge und Regions-\neinstellung sind für andere\neinsehbar, während du mit Wiimmfi\nverbunden bist.",
+    },
+    "7256": {
+        string: "Deine Landesflagge und Regions-\neinstellung sind für andere\nnicht einsehbar, während du mit\nWiimmfi verbunden bist.",
+    },
+    "7401": {
+        string: "Spielst du Mario Kart Wii online,\ndann werden automatisch\ndie folgenden Daten an\nWiimmfi gesendet:\n- dein Mii und Spitzname\n- deine Rekorde und Geistdaten\n\nDiese Daten können andere\nSpieler via Wiimmfi einsehen.",
+    },
+    "7402": {
+        string: "Dürfen Daten an\nWiimmfi gesendet werden?",
+    },
+    "7405": {
+        string: "Du hast die Erlaubnis erteilt, dass\nDaten an Wiimmfi gesendet werden.",
+    },
+    "7406": {
+        string: "Du möchtest es nicht erlauben?\nIn diesem Fall kannst du\nMario Kart Wii nicht via\nWiimmfi spielen.",
+    },
+    "7407": {
+        string: "Du hast nicht erlaubt, dass\nDaten an Wiimmfi gesendet werden.",
+    },
+    "7501": {
+        string: "Miis von Spielern aus der ganzen\nWelt werden unter anderem bei Rennen,\nWettkämpfen, in Ranglistendaten\nwährend der Verbindung via\nWiimmfi dargestellt.\nDu kannst entscheiden, ob diese\nMiis in Mario Kart Wii dargestellt\nwerden oder ob sie von Nintendo-\nMiis ersetzt werden sollen.",
+    },
+    "8203": {
+        string: "Wiimmfi-Rekorde",
+    },
+    "8220": {
+        string: "Wiimmfi-Freundes-Rekord",
+    },
+}
