@@ -12,12 +12,12 @@ namespace Auth {
     ///////////////
 
     // The payload version we pretend to be on
-    // This is the latest version
+    // This is because the server currently does not let us join with the correct version number
     static const char PAYLOAD_VERSION[] = "96";
 
-    // The patcher we pretend to be using
-    // This is the pre-encoded version of "LE-CODE GCT v1" (plus asterisks)
-    static const char PATCHER_TYPE[] = "TEUtQ09ERSBHQ1QgdjEgACoqKioqKioqKioqKioqKioqKioqKioqKioq";
+    // The patcher type
+    // This is the pre-encoded version of "OpenPayload"
+    static const char PATCHER_TYPE[] = "T3BlblBheWxvYWQA";
 
     // The console type and region we pretend to be on, as Wiimmfi doesn't need this information
     // This is the pre-computed string for regular Wii on the PAL version
