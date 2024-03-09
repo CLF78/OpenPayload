@@ -14,7 +14,6 @@ namespace Status {
 
 char* sToken;
 char sScrambledToken[96];
-const int OFFSET = 0x20;
 
 void DecodeToken(const char* encodedToken) {
 
@@ -27,22 +26,20 @@ void DecodeToken(const char* encodedToken) {
     decodedLen = DWC_Base64Decode(encodedToken, encodedLen, sToken, decodedLen);
     sToken[decodedLen] = '\0';
 
-    // Scramble the token
-    // Start by filling the array with garbage data
-    // Q: Why is this scrambling even done when the token is available in plaintext at a fixed address?
-    for (int i = 0; i < sizeof(sScrambledToken); i++) {
-        sScrambledToken[i] = i + OFFSET;
+    // Start by filling an ASCII table
+    for (int i = 0; i < sizeof(sScrambledToken) - 1; i++) {
+        sScrambledToken[i] = i + ' ';
     }
 
     // Check if the token was decoded correctly
     if (decodedLen > 0) {
 
-        // Run a substitution cipher on the token
+        // Run ASCII substitution
         const char key[] = "0123456789,abcdefghijklmnopqrstuvwxyz|=+-_";
-        for (int i = 0; i < decodedLen + 1 && i < sizeof(key); i++) {
+        for (int i = 0; i < decodedLen && i < sizeof(key); i++) {
             char c = sToken[i];
             char pos = key[i];
-            sScrambledToken[pos - OFFSET] = c;
+            sScrambledToken[pos - ' '] = c;
         }
     }
 }
@@ -55,7 +52,7 @@ void ScrambleMessage(char* msg, int msgLen) {
 
     // Scramble the message otherwise
     for (int i = 0; i < msgLen; i++) {
-        u8 c = msg[i] - OFFSET;
+        u8 c = msg[i] - ' ';
         if (c < sizeof(sScrambledToken)-1)
             msg[i] = sScrambledToken[c];
     }
@@ -87,7 +84,7 @@ void SendMessage(const char* key, const char* value, int integerValue) {
     }
 
     // Scramble the message
-    ScrambleMessage(buffer + sizeof("\\xy\\")-1, len - sizeof("\\final\\"));
+    ScrambleMessage(buffer + sizeof("\\xy\\")-1, len - sizeof("\\final\\") - sizeof("\\xy\\") - 1);
 
     // Lock interrupts and append message
     {
