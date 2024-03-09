@@ -3,7 +3,6 @@
 #include <revolution/ios.h>
 #include <revolutionex/nhttp/NHTTPInternal.h>
 
-// TODO Depending on how the reveal goes, change this to provide real information
 namespace Wiimmfi {
 namespace Auth {
 
