@@ -59,10 +59,6 @@ void AppendAuthParameters(NHTTPReq* req) {
     DEBUG_REPORT("[WIIMMFI_AUTH] Sending patcher type: %s\n", PATCHER_TYPE)
     NHTTPAddPostDataAscii(req, "_patcher", PATCHER_TYPE);
 
-    // Send the IOS Version (but not the actual one)
-    DEBUG_REPORT("[WIIMMFI_AUTH] Sending IOS version: %s\n", IOS_VERSION)
-    NHTTPAddPostDataAscii(req, "_game_ios", IOS_VERSION);
-
     // Send the console type (but not the actual one)
     // Wiimmfi here does a couple of things:
     // - Read 2 bytes at 0xCD8005A0

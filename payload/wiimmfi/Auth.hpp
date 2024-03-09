@@ -19,10 +19,6 @@ namespace Auth {
     // This is the pre-encoded version of "LE-CODE GCT v1" (plus asterisks)
     static const char PATCHER_TYPE[] = "TEUtQ09ERSBHQ1QgdjEgACoqKioqKioqKioqKioqKioqKioqKioqKioq";
 
-    // The IOS version we pretend to be using, as Wiimmfi doesn't need this information
-    // This is the pre-encoded Dolphin default for the PAL game
-    static const char IOS_VERSION[] = "MzY*";
-
     // The console type and region we pretend to be on, as Wiimmfi doesn't need this information
     // This is the pre-computed string for regular Wii on the PAL version
     static const char CONSOLE_TYPE[] = "ffff-P";
