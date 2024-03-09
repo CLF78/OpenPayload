@@ -4,6 +4,14 @@ namespace Wiimmfi {
 namespace Status {
 
     ///////////////
+    // Constants //
+    ///////////////
+
+    // Header and terminator string for each status report
+    static const char STATUS_HEADER[] = "\\xy\\";
+    static const char STATUS_TERMINATOR[] = "\\final\\";
+
+    ///////////////
     // Functions //
     ///////////////
 

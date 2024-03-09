@@ -109,10 +109,3 @@ kmCallDefCpp(0x806579B0, void) {
     // Original call
     VIWaitForRetrace();
 }
-
-// RKNetController::mainNetworkLoop() patch
-// Delete the token at network shutdown
-kmBranchDefCpp(0x80657A6C, NULL, void) {
-    if (Wiimmfi::Status::sToken)
-        delete Wiimmfi::Status::sToken;
-}

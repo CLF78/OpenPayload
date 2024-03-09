@@ -429,7 +429,6 @@ void ReportSignatureAndCert() {
     int tokenLength = Status::sToken ? strlen(Status::sToken) : 0;
 
     // Get the certificate
-    // Removed useless memset call here
     s32 ret = ES_Sign((u8*)Status::sToken, tokenLength, (u8*)signature, (u8*)cert);
     if (ret == ES_ERR_OK) {
 
@@ -449,6 +448,10 @@ void ReportSignatureAndCert() {
         Status::SendMessage("xy_sg", "invalid", ret);
         Status::SendMessage("xy_ct", "invalid", ret);
     }
+
+    // Delete the token from memory since we no longer need it
+    if (Status::sToken)
+        delete Status::sToken;
 }
 
 void ReportSuspendUpdate() {
@@ -467,7 +470,7 @@ void ReportSuspendUpdate() {
 
     // For each aid, set 1 if suspended, 0 if it isn't suspended and the node exists, else "-"
     char buffer[] = "------------";
-    for (int i = 0; i < sizeof(buffer) - 1; i++) {
+    for (int i = 0; i < strlenconst(buffer); i++) {
         if (suspendMask & (1 << i))
             buffer[i] = '1';
         else if (DWCi_NodeInfoList_GetNodeInfoForAid(i))

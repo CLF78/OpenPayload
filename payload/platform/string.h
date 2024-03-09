@@ -15,8 +15,9 @@ char* strstr(char* str1, const char* str2);
 size_t strlen(const char* str);
 u32 strtoul(const char* str, char** endptr, int base);
 
-#define strshift(str, str2) (str) += sizeof((str2)) - 1
-#define strstartw(str, str2) (strncmp((str), (str2), sizeof((str2)) - 1) == 0)
+#define strlenconst(str) (sizeof((str)) - 1)
+#define strshift(str, str2) (str) += strlenconst(str2)
+#define strstartw(str, str2) (strncmp((str), (str2), strlenconst(str2)) == 0)
 
 #ifdef __cplusplus
 }

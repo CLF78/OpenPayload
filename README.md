@@ -136,5 +136,4 @@ The table below lists all the new hooks introduced by OpenPayload and their purp
 |----------------------|--------------|-------------|:--------:|-------------------|
 | `0x8011BC38` | NATNEG Fixes | Skip Unnecessary Delay | [natneg.cpp](/payload/gs/natneg/natneg.cpp) | Ported from WiiLink24 WFC |
 | `0x80554728` | Various | Reset Values Before Race Start | N/A | N/A
-| `0x80657A6C` | Authentication | Delete Expired Token | [RKNetController.cpp](/payload/game/net/RKNetController.cpp) | N/A |
 | `0x808BFB74` | Custom Error Messages | Display Custom Error Message | [WifiDisconnectPage.cpp](/payload/game/ui/page/WifiDisconnectPage.cpp) | Virtual function override |
