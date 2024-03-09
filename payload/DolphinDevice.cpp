@@ -13,7 +13,7 @@ bool IsOpen() {
 
 bool Open() {
     if (!IsOpen())
-        sDevDolphin = IOS_Open("/dev/dolphin", 0);
+        sDevDolphin = IOS_Open("/dev/dolphin", IPC_OPEN_NONE);
     return IsOpen();
 }
 

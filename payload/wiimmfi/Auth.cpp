@@ -4,7 +4,10 @@
 #include <platform/stdlib.h>
 #include <platform/string.h>
 #include <revolution/base/PPCArch.h>
+#include <revolution/base/PPCReg.h>
 #include <revolution/es/es.h>
+#include <revolution/os/OSLoMem.h>
+#include <revolution/os/OSTitle.h>
 #include <revolutionex/nhttp/NHTTP.h>
 #include <wiimmfi/Auth.hpp>
 #include <wiimmfi/Port.hpp>
@@ -18,6 +21,27 @@ namespace Auth {
 char sConsoleCert[DWC_Base64GetEncodedSize(IOSECCCertSize)+1];
 char sConsoleAssignMessageBuffer[796];
 wchar_t* sConsoleAssignMessage;
+
+u32 GetConsoleType() {
+
+    // Test for Dolphin by reading the LT_CHIPREVID register
+    if (__LT_CHIPREVID == CONSOLE_DOLPHIN)
+        return CONSOLE_DOLPHIN;
+
+    // Test for Wii Mini by opening /title/00000001/00000002/data/macaddr.bin
+    int macAddrFd = IOS_Open("/title/00000001/00000002/data/macaddr.bin", IPC_OPEN_READ);
+    if (macAddrFd >= 0) {
+        IOS_Close(macAddrFd); // Close the file back
+        return CONSOLE_WII_MINI;
+    }
+
+    // Test for vWii by checking for the BC-NAND title
+    if (OSIsTitleInstalled(0x0000000100000200))
+        return CONSOLE_WII_U;
+
+    // None of the checks passed, we are a regular Wii
+    return CONSOLE_WII;
+}
 
 void AppendAuthParameters(NHTTPReq* req) {
 
@@ -59,18 +83,21 @@ void AppendAuthParameters(NHTTPReq* req) {
     DEBUG_REPORT("[WIIMMFI_AUTH] Sending patcher type: %s\n", PATCHER_TYPE)
     NHTTPAddPostDataAscii(req, "_patcher", PATCHER_TYPE);
 
-    // Send the console type (but not the actual one)
-    // Wiimmfi here does a couple of things:
-    // - Read 2 bytes at 0xCD8005A0
-    // * On Wii, this is a mirror of 0xCD8001A0, a random clock register (PLLSYS) whose value will be 0xFFFF
-    // * On other platforms, this is a register named LT_CHIPREVID, and the value will be 0xCAFE
-    // - Try to open /title/00000001/00000002/data/macaddr.bin
-    // * If the file exists, the console is a Wii Mini, so set the console type to 0x0C01
-    // - Get the count of titles with id 0000000100000200
-    // * The title is BC-NAND, which is vWii only, so if present set the console type to 0xCAFE
-    // We will pretend to be a regular Wii console on the PAL game
-    DEBUG_REPORT("[WIIMMFI_AUTH] Sending console type and region: %s\n", CONSOLE_TYPE)
-    NHTTPAddPostDataAscii(req, "_console", CONSOLE_TYPE);
+
+    // Get the console type and region
+    // Only do this operation once
+    static bool sConsoleTypeObtained = false;
+    static char sConsoleTypeBuffer[7];
+    if (!sConsoleTypeObtained) {
+        sprintf(sConsoleTypeBuffer, "%04x-%c", GetConsoleType(), __OSBootInfo.diskInfo.gameName[3]);
+        sConsoleTypeObtained = true;
+    } else {
+        DEBUG_REPORT("[WIIMMFI_AUTH] Already obtained console type and region\n")
+    }
+
+    // Send it over
+    DEBUG_REPORT("[WIIMMFI_AUTH] Sending console type and region: %s\n", sConsoleTypeBuffer)
+    NHTTPAddPostDataAscii(req, "_console", sConsoleTypeBuffer);
 
     // Send the device ID XOR'd with Dolphin's default value
     char deviceIdBuffer[28];

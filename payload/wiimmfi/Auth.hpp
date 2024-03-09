@@ -11,6 +11,14 @@ namespace Auth {
     // Constants //
     ///////////////
 
+    // The possible console types
+    enum ConsoleType {
+        CONSOLE_WII = 0x0000,
+        CONSOLE_WII_MINI = 0x0C01,
+        CONSOLE_WII_U = 0xCAFE,
+        CONSOLE_DOLPHIN = 0xFFFF,
+    };
+
     // The payload version we pretend to be on
     // This is because the server currently does not let us join with the correct version number
     static const char PAYLOAD_VERSION[] = "96";
@@ -18,10 +26,6 @@ namespace Auth {
     // The patcher type
     // This is the pre-encoded version of "OpenPayload"
     static const char PATCHER_TYPE[] = "T3BlblBheWxvYWQA";
-
-    // The console type and region we pretend to be on, as Wiimmfi doesn't need this information
-    // This is the pre-computed string for regular Wii on the PAL version
-    static const char CONSOLE_TYPE[] = "ffff-P";
 
     // The heading of each response type
     static const char RESPONSE_P2PPORT[] = "p2pport=";

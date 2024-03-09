@@ -17,6 +17,13 @@ typedef enum {
     IPC_ENOMEM     = -22,
 } IPCResult;
 
+typedef enum {
+    IPC_OPEN_NONE  = BIT_FLAG(-1),
+    IPC_OPEN_READ  = BIT_FLAG(0),
+    IPC_OPEN_WRITE = BIT_FLAG(1),
+    IPC_OPEN_RW    = IPC_OPEN_READ | IPC_OPEN_WRITE,
+} IPCOpenFlags;
+
 typedef struct {
     void* data;
     u32 size;
