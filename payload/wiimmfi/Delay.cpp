@@ -23,6 +23,10 @@ u32 GetTime() {
 
 void Calc(u32 frameCount) {
 
+    // Do not do anything if the frame count is 0
+    if (frameCount == 0)
+        return;
+
     // If the match start time is not set, do so
     if (sMatchStartTime == 0)
         sMatchStartTime = GetTime();
