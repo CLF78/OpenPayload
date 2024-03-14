@@ -29,11 +29,13 @@ void ProcessRecvConnFailMtxCommand(int clientAPid, u32 clientAIP, u16 clientAPor
     }
 
     // Find a "client B" with a connection failure, as we can only send the commands once per function
-    // Q: Why can't we just find the lowest AID instead of running the entire loop everytime?
+    // The loop is reversed in order to find the highest AID
     int clientBAid = -1;
-    for (int i = 0; i < 0xC; i++) {
-        if (data->connFailMtx >> i & 1)
+    for (int i = 0xB; i >= 0; i--) {
+        if (data->connFailMtx >> i & 1) {
             clientBAid = i;
+            break;
+        }
     }
 
     // If no "client B" was found, bail
@@ -52,7 +54,6 @@ void ProcessRecvConnFailMtxCommand(int clientAPid, u32 clientAIP, u16 clientAPor
     }
 
     // Copy the node info to the temporary new node
-    // Q: Why is this necessary?
     memcpy(&stpMatchCnt->tempNewNodeInfo, clientBInfo, sizeof(DWCNodeInfo));
 
     // Set up the command for client B and send it

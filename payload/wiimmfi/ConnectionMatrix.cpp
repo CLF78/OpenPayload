@@ -27,7 +27,6 @@ void Update() {
         return;
 
     // Lock interrupts
-    // Q: Why is this needed?
     nw4r::ut::AutoInterruptLock lock;
 
     // Compute the connection matrix

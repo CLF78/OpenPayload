@@ -8,7 +8,6 @@ public:
         ROOM_GUEST,
     };
 
-    // TODO change this to RKNetROOMPacket if the packet gets expanded
     void SetAllSendPackets(u32 packet);
 
     bool statusDataSet;

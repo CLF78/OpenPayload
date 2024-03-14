@@ -135,7 +135,6 @@ void ReportCourseSubfiles() {
     *buffers[1] = *buffers[0];
 
     // Locate STGI section to overwrite lap/speed modifier
-    // Q: Why not just send the values from the KMP instead of hashing it twice??
     for (int i = 0; i < kmp->numSections; i++) {
 
         // Get KMP section
@@ -222,7 +221,6 @@ void ReportFinishTime(u8 playerIdx) {
 
     // Get the RaceManager timer
     // Use interrupts to get a more accurate value
-    // Q: Is this really necessary?
     {
         nw4r::ut::AutoInterruptLock lock;
         timer = RaceManager::instance->frameCounter;
@@ -289,7 +287,6 @@ void ReportHostSlotChange() {
 void ReportMatchStateChange() {
 
     // Initialize data
-    // Q: Why not use the existing debug strings instead of making these?
     static int sMatchState = -1;
     static const char* sMatchStateStrings[DWC_MATCH_STATE_COUNT] = {
         "init",

@@ -126,7 +126,6 @@ void StoreConnectionAndInfo(int connIdx, GT2Connection conn, DWCNodeInfo* node) 
     DEBUG_REPORT("[NATNEG-NG] Stored connection with PID %d\n", node->profileId)
 
     // Reset data receive time and update connection matrix
-    // Q: Why isn't PostProcessConnection called like in the original callbacks?
     DWCi_ResetLastSomeDataRecvTimeByAid(node->aid);
     ConnectionMatrix::Update();
 }
@@ -149,7 +148,6 @@ void ConnectAttemptCallback(GT2Socket socket, GT2Connection conn, u32 ip, u16 po
         return;
 
     // If we are still in INIT state, reject the connection attempt
-    // Q: What is the difference between wait1 and wait2 in practice?
     if (stpMatchCnt->state == DWC_MATCH_STATE_INIT) {
         DEBUG_REPORT("[NATNEG-NG] Connection rejected from PID %d (INIT state)\n", pid)
         gt2Reject(conn, "wait1", -1);
@@ -170,9 +168,7 @@ void ConnectAttemptCallback(GT2Socket socket, GT2Connection conn, u32 ip, u16 po
         return;
     }
 
-    // Act depending on the match state
-    // Q: What is the reasoning behind this switch case?
-    // Q: Why is the pid compared to the new node one?
+    // Stop mesh making if we are stuck doing NATNEG
     switch(stpMatchCnt->state) {
 
         // Waiting for reservation response
@@ -200,7 +196,6 @@ void ConnectAttemptCallback(GT2Socket socket, GT2Connection conn, u32 ip, u16 po
     }
 
     // If the server is full, bail
-    // Q: Why isn't the connection rejected in that case (like in the original callback)?
     int connIdx = DWCi_GT2GetConnectionListIdx();
     if (connIdx == -1) {
         DEBUG_REPORT("[NATNEG-NG] Connection failed with PID %d (server full)\n", pid)
@@ -235,9 +230,8 @@ void ConnectedCallback(GT2Connection conn, GT2Result result, const char* msg, in
     u8 aid = conn->aid - 1;
 
     // If the connection attempt resulted into a NATNEG error try again in 150 frames
+    // Only do so on one side of the connection by comparing the PIDs
     if (result == GT2_RESULT_NEGOTIATION_ERROR) {
-
-        // Q: Why is the profileId check using "<=" ?
         DEBUG_REPORT("[NATNEG-NG] Negotiation error with AID %d\n", aid)
         DWCNodeInfo* node = DWCi_NodeInfoList_GetNodeInfoForAid(aid);
         if (node && node->profileId <= stpMatchCnt->profileId)
@@ -275,9 +269,7 @@ void ConnectedCallback(GT2Connection conn, GT2Result result, const char* msg, in
         return;
     }
 
-    // Act depending on the match state
-    // Q: What is the reasoning behind this switch case?
-    // Q: Why is the pid compared to the new node one?
+    // Stop mesh making if we are stuck doing NATNEG
     switch(stpMatchCnt->state) {
 
         // Waiting for reservation response
@@ -385,7 +377,6 @@ bool PreventRepeatNATNEGFail(u32 failedPid) {
 
 void RecoverSynAckTimeout() {
 
-    // Q: What does this function achieve in practice?
     // Use an internal timer to determine the frequency of the check
     static u32 sSynAckTimer;
 
@@ -432,7 +423,6 @@ void RecoverSynAckTimeout() {
     }
 
     // Send a SYN command periodically, but save the last send time first
-    // Q: Why is the last send time saved and restored?
     s64 lastSendTime = stpMatchCnt->lastSynSent;
     for (int i = 0; i < nodeCount; i++) {
         if (noSynAckAids >> i & 1)
