@@ -14,20 +14,25 @@ OpenPayload's code relies on the CodeWarrior compiler and the Kamek linker for h
 
 Compilation instructions or compiled outputs will not be provided, as OpenPayload is meant to give more wiggle room to complex distributions rather than disrupt Wiimmfi's functionality.
 
+## Testing Status
+OpenPayload is largely untested at the moment. Connecting to the server and creating/joining/starting a friend room are confirmed to be working, but there may be bugs still lingering. Please report any issue.
+
 ## Implementation Details
 OpenPayload is opinionated, meaning that some features are not reimplemented and some others are implemented differently, in order to follow proper programming practices and provide cleaner, less bloated code.
 
 Major features that were not ported include:
-- **Auto Reconnect**: Benefits of this feature are seemingly nonexistent, and the amount of code added is too much to justify the effort;
+- **Auto Reconnect**: While the feature allows the game to remain functional during server maintenance, such a scenario usually doesn't last long enough to justify the effort required to port the code. There are also concerns about potential introduced instabilities due to the extensive modifications that were made;
 - **Cheat Reporting**: Since these are basically self-reports that generally do not lead to a ban (the reports themselves are not accessible to moderators), these hooks have been skipped. Once in-game reporting is *properly* implemented on both client and server side, porting will be considered;
-- **Custom Error Messages**: Due to this feature being prone to breakage, it has been chosen to rely on an offline set of fixed error messages instead. The new version of the feature also displays the error code when the "disc error" occurs;
+- **Custom Error Messages**: Due to this feature being prone to breakage, it has been chosen to rely on an offline set of fixed error messages instead. OpenPayload also displays the error code when the "disc error" occurs;
 - **Frameskip**: The amount of code and its unreadability proved too much to handle. A skill issue, one could argue;
 - **IOS Operation Protection**: This measure is extremely easy to bypass, offers no additional protection and only serves to make IOS access more annoying for mods.
 
 ### Mod Support
-Some generic functions meant to showcase potential interoperation between mods and the payload have been defined in [ModSupport.hpp](/payload/ModSupport.hpp).
+Some generic functions meant to showcase potential interoperation between mods and OpenPayload have been defined in [ModSupport.hpp](/payload/ModSupport.hpp).
 
-The message patches applied by the WSZST-based patcher have been converted to JSON5 and cleaned up, adding some missing translations and removing various translation error and broken escape sequences. They can be found in `assets`.
+The message patches applied by the WSZST-based patcher have been converted to the JSON5 format used by [wuj5](https://github.com/stblr/wuj5) and cleaned up, adding some missing translations and removing various translation errors and broken escape sequences. They can be found in `assets`.
+
+OpenPayload currently does not support modifying the login region. To do so, use [this Gecko code](https://mariokartwii.com/showthread.php?tid=127) or apply an equivalent patch for the patching framework you're using.
 
 ### Existing Hooks
 The table below lists all the hooks used by the original Wiimmfi payload as of v96, their purpose, the reimplementation status and any changes that were made to the original code.
@@ -102,7 +107,7 @@ The legend is as follows:
 | `0x8053F3F4` | Player Kicking | Cancel Race Support | ☑️<br>(Branch from `0x8053F39C` to `0x8053F444`) | [RaceModeOnlineVs.cpp](/payload/game/system/RaceModeOnlineVs.cpp) | Rewritten in C++ to allow mods to easily end the race on command |
 | `0x8054DF88` | Frameskip | Disable Model Drawing while Lagging | ⏭ | N/A | Pointless patch as the hooked function is never called by the game |
 | `0x805543A4` | Telemetry | Report Course Subfile SHA1 Hashes | ✅ | [RaceScene.cpp](/payload/game/scene/RaceScene.cpp)<br>[Reporting.cpp](/payload/wiimmfi/Reporting.cpp) | The hashes are not computed if the race is offline |
-| `0x80562AD0` | Frameskip | Disable Model Drawing while Lagging | ⏭ | N/A | Frameskip ill not be implemented |
+| `0x80562AD0` | Frameskip | Disable Model Drawing while Lagging | ⏭ | N/A | Frameskip will not be implemented |
 | `0x805845D8` | Bug Fixes | Invalid Item Point Antifreeze | ⏭ | N/A | Pointless hook that replaces a null pointer check |
 | `0x80589ACC` | Bug Fixes | Halfpipe Fix | ✅ | [KartNetReceiver.cpp](/payload/game/kart/KartNetReceiver.cpp) | <ul><li>Removed pointless null pointer check</li><li>Used a couple padding bytes in the KartNetReceiver class instead of a static array</li></ul> |
 | `0x80591B70` | Telemetry and "Anticheat" | Report Common.szs Subfile SHA1 Hashes and "Detect" Gecko Codes | ✅ | [KartParam.cpp](/payload/game/kart/KartParam.cpp)<br>[Reporting.cpp](/payload/wiimmfi/Reporting.cpp) | <ul><li>The hashes will not be calculated if the game is offline</li><li>The Gecko code checks are not ported due to ease of bypass, potential false reports caused by mods and lack of use for bans</li></ul> |
