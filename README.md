@@ -125,7 +125,7 @@ The legend is as follows:
 | `0x806591F4`<br>`0x80659248` | Telemetry | Obtain VS/BT Regions | ⏭ | N/A | Removed disgusting runtime hooks and replaced them with a sane solution |
 | `0x8065DF44` | Security Fixes | ITEM Packet Data Validation | ⚠️ | N/A | Integrated into RCE Fix (not implemented yet) |
 | `0x8065FF5C` | Bug Fixes | Reset Room Stall Timer | ✅ | [RKNetSelectHandler.cpp](/payload/game/net/RKNetSelectHandler.cpp)<br>[RoomStall.cpp](/payload/wiimmfi/RoomStall.cpp) | N/A |
-| `0x80660330` | Bug Fixes | Room Stall Prevention | ✅ | [RKNetSelectHandler.cpp](/payload/game/net/RKNetSelectHandler.cpp)<br>[RoomStall.cpp](/payload/wiimmfi/RoomStall.cpp) | <ul><li>The timeout timer will not be reset between SELECT phases and instead acts as a global timer</li><li>Additional fields are checked when determining who to kick</li><li>The timeout timer has been increased to 90 seconds</li></ul> |
+| `0x80660330` | Bug Fixes | Room Stall Prevention | ✅ | [RKNetSelectHandler.cpp](/payload/game/net/RKNetSelectHandler.cpp)<br>[RoomStall.cpp](/payload/wiimmfi/RoomStall.cpp) | N/A |
 | `0x80760A88` | Bug Fixes | Thwomp Antifreeze | ✅ | [ObjDossun.cpp](/payload/game/obj/ObjDossun.cpp) | N/A |
 | `0x8079BF88` | Security Fixes | EVENT Packet Data Validation | ⚠️ | N/A | Integrated into RCE Fix (not implemented yet) |
 | `0x807A1914` | Bug Fixes | Stationary Item Collision Momentum Fix | ✅ | [ItemObj.cpp](/payload/game/item/ItemObj.cpp) | N/A |

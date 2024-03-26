@@ -28,6 +28,9 @@ namespace Kick {
     // Schedules a kick for the given AID
     void ScheduleForAID(int aid);
 
+    // Schedules a kick for the AIDs in the given bitmap
+    void ScheduleForAIDs(u32 aidMap);
+
     // Schedules a kick for everyone in the room
     void ScheduleForEveryone();
 

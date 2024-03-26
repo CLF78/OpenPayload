@@ -16,6 +16,11 @@ void ScheduleForAID(int aid) {
     sAidsToBeKicked |= (1 << aid);
 }
 
+void ScheduleForAIDs(u32 aids) {
+    DEBUG_REPORT("[WIIMMFI_KICK] Scheduled kick for aids %08X\n", aids)
+    sAidsToBeKicked |= aids;
+}
+
 void ScheduleForEveryone() {
     DEBUG_REPORT("[WIIMMFI_KICK] Scheduled kick for all aids\n")
     sAidsToBeKicked = 0xFFFFFFFF;

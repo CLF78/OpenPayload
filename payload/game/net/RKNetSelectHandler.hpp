@@ -28,7 +28,7 @@ public:
     u32 aidsWithNewSelect;
     u32 aidsWithNewRH1;
     u32 aidsWithNewRaceSettings;
-    u32 aidsWithAccurateAidPidMap;
+    u32 aidsWithVoteData;
     u32 aidsThatHaveVoted;
     // 4 bytes padding
 

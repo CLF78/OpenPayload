@@ -26,27 +26,34 @@ void Update() {
     // Reset the timer if the threshold is reached
     sKickTimer = 0;
 
-    // Get the full aid map and the corresponding bit mask
+    // Get the full aid map
     RKNetController::Sub* sub = RKNetController::instance->getCurrentSub();
+    RKNetSELECTHandler* sel = RKNetSELECTHandler::instance;
     u32 aidMap = sub->availableAids | (1 << sub->myAid);
 
-    // Get the list of aids that have not completed the loading procedure
-    RKNetSELECTHandler* sel = RKNetSELECTHandler::instance;
-    u32 incompleteAids = ~(sel->aidsWithNewSelect &
-                           sel->aidsWithNewRH1 &
-                           sel->aidsWithNewRaceSettings &
-                           sel->aidsThatHaveVoted &
-                           sel->aidsWithAccurateAidPidMap);
+    // Get the list of aids that have not completed the loading procedure, depending on the phase
+    u32 incompleteAids = 0;
+    switch(sel->sendPacket.phase) {
 
-    // Remove unused bits
-    incompleteAids &= aidMap;
+        case RKNetSELECTPacket::PREPARE:
+            incompleteAids = (~sel->aidsWithNewSelect) & aidMap;
+            if (incompleteAids == 0)
+                incompleteAids = (~sel->aidsWithNewRaceSettings) & aidMap;
+            break;
+
+        case RKNetSELECTPacket::VOTING:
+            incompleteAids = (~sel->aidsThatHaveVoted) & aidMap;
+            if (incompleteAids == 0)
+                incompleteAids = (~sel->aidsWithVoteData) & aidMap;
+            break;
+
+        default:
+            break;
+     }
+
+    // Kick the AIDs
     DEBUG_REPORT("[WIIMMFI_KICK] Detected room stall with AIDs %08X\n", incompleteAids)
-
-    // Kick each user still lingering
-    for (int i = 0; i < 12; i++) {
-        if (incompleteAids >> i & 1)
-            Kick::ScheduleForAID(i);
-    }
+    Kick::ScheduleForAIDs(incompleteAids);
 }
 
 } // namespace RoomStall

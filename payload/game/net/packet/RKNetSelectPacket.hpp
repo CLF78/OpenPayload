@@ -11,6 +11,13 @@ struct RKNetSELECTPlayer {
 size_assert(RKNetSELECTPlayer, 0x8);
 
 struct RKNetSELECTPacket {
+
+    enum Phase {
+        PREPARE,
+        VOTING,
+        LOTTERY,
+    };
+
     s64 timeSender;
     s64 timeReceived;
     RKNetSELECTPlayer playerData[2];
