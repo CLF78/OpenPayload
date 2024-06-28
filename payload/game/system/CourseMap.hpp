@@ -405,6 +405,12 @@ public:
 
     s16 getClosestAreaIdByType(VEC3* pos, s16 prevAreaId, s16 type); // prevAreaId = previous area this function returned
 
+    static const MapdataCannonPoint* getDummyCannonPoint();
+    const MapdataCannonPoint* getCannonPoint(u32 id);
+
+    static const MapdataItemPoint* getDummyItemPoint();
+    const MapdataItemPoint* getItemPoint(u32 id);
+
     MapdataFileAccessor* mpCourse;
 
     MapdataStartPointAccessor* mpStartPoint;
