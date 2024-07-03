@@ -14,8 +14,8 @@
 #include <platform/stdio.h>
 #include <platform/string.h>
 #include <revolution/es/es.h>
+#include <revolution/ios.h>
 #include <revolutionex/net/NETDigest.h>
-#include <wiimmfi/Auth.hpp>
 #include <wiimmfi/ConnectionMatrix.hpp>
 #include <wiimmfi/Reporting.hpp>
 #include <wiimmfi/Status.hpp>
@@ -26,6 +26,7 @@ namespace Reporting {
 
 u32 sNodeCount;
 u32 sTargetFrameCount;
+char sConsoleCert[DWC_Base64GetEncodedSize(IOSECCCertSize)+1];
 
 void* GetSubfileHash(const char* path, int src, char* hash) {
 
@@ -435,9 +436,9 @@ void ReportSignatureAndCert() {
         Status::SendMessage("xy_sg", b64Signature, ret);
 
         // Encode and send the certificate
-        len = DWC_Base64Encode(cert, sizeof(cert), Auth::sConsoleCert, sizeof(Auth::sConsoleCert));
-        Auth::sConsoleCert[len] = '\0';
-        Status::SendMessage("xy_ct", Auth::sConsoleCert, ret);
+        len = DWC_Base64Encode(cert, sizeof(cert), sConsoleCert, sizeof(sConsoleCert));
+        sConsoleCert[len] = '\0';
+        Status::SendMessage("xy_ct", sConsoleCert, ret);
 
     } else {
 
