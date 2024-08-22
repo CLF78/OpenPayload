@@ -31,7 +31,8 @@ kmBranchDefCpp(0x80519508, NULL, void, DvdArchive* self, const char* path, EGG::
     self->state = DvdArchive::DECOMPRESSED;
 
     // Check if it's a track file, if not bail
-    if (!strstartw(path, "Race/Course/"))
+    // The path will be null if the course is being loaded from the cache, so check for that as well
+    if (path && !strstartw(path, "Race/Course/"))
         return;
 
     // Check if we're online, if not bail
